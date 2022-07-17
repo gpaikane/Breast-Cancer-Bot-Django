@@ -10,7 +10,7 @@ from chatbot.models import Chatbot
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pickle
-
+import os
 
 
 
@@ -26,11 +26,11 @@ inputs = []
 
 # Load models
 # import NLP model created to classify user's inputs to one of the classes mentioned in `output_df`. More info on this is providied in `Train Breast Cancer NLP Model for Chatbot`
-model_load  = tf.keras.models.load_model(r'chatbot\chatbot_models\models\NLP_model.h5')
+model_load  = tf.keras.models.load_model(os.path.join('chatbot','chatbot_models','models','NLP_model.h5'))
 
-loadedModel = joblib.load(r'chatbot\chatbot_models\models\BC_risk_model.pkl')
-trained_nlp = spacy.load(r"chatbot\chatbot_models\models\output\model-best")
-output_df = pd.read_json(r"chatbot\chatbot_data\save_replys_dataframe\output_df.json")
+loadedModel = joblib.load(os.path.join('chatbot','chatbot_models','models','BC_risk_model.pkl'))
+trained_nlp = spacy.load(os.path.join("chatbot","chatbot_models","models","output","model-best"))
+output_df = pd.read_json(os.path.join("chatbot","chatbot_data","save_replys_dataframe","output_df.json"))
 
 
 def checkBreastCancerRisk(user_step, user_input, request):
