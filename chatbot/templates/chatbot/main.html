@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block scripts %}
+
+<link rel="stylesheet" href="{% static 'chatbot/style.css' %}">
+
+<script src="{% static 'chatbot/chatbot.js' %}" defer></script>
+
+{% endblock scripts %}
+
+
+{% block title %}
+
+
+{% endblock title %}
+
+
+
+{% block content %}
+
+<h1>Breast Cancer Helper Chatbot</h1>
+<h3>Breast cancer helper chatbot is here to answer your queries related to breast cancer. 
+<br>You can also access risk of Breast cancer by answering few questions!!  </h3>
+<p>You can ask queries related to:</p>
+<ul>
+<li>Breast Cancer Treatment</li>
+<li>Breast Cancer medical Terms</li>
+<li>You can talk about emotional pressure</li>
+<li>Request for Breast cancer Risk assessment</li>
+</ul>
+<p><b>Please note:</b> This chatbot is prepared as part of NTT Data Hackathon.<br>The Chatbot is <b>not certified</b> by medical professional.</b></p>
+
+
+<body>
+
+    <div id="container" class="container">
+      <img class="botimage" src="https://cdn.pixabay.com/photo/2019/03/21/15/51/chatbot-4071274_960_720.jpg"   alt="Chatbot clipart">
+      <div id="chat" class="chat">
+      <div id="messages" class="messages"><div id="user" class="user response"><span></span></div><div id="bot" class="bot response"><span><b>HelperBot:</b> I am Breast Cancer Herper Chatbot. I can answer queries realted to Breast Cancer. <br>I can help you to make you understand any biopsy report term if you don't understand. <br>I can evern help you to assess your risk of getting Breast Cancer.</span></div></div>
+      <input id="input" type="text" placeholder="Write something..." autocomplete="off" ="true"="">
+    </div>
+  </div>
+</body>
+{% endblock content %}
