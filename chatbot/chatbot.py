@@ -117,6 +117,11 @@ def get_reply_from_BC_npl_model(user_input):
         response = random.sample(output_df[output_df['class'] ==class_output]['responses'].to_list()[0],1)[0]
     else:
         response = "Sorry!! I could not understand, could you please rephrase it?"
+        
+        chatbot = Chatbot()
+        chatbot.unidentifiedText = user_input
+        chatbot.save()
+
     return class_output, response 
 
 
