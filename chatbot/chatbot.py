@@ -26,7 +26,7 @@ inputs = []
 
 # Load models
 # import NLP model created to classify user's inputs to one of the classes mentioned in `output_df`. More info on this is providied in `Train Breast Cancer NLP Model for Chatbot`
-model_load  = tf.keras.models.load_model(r'chatbot\chatbot_models\models\NLP_model.h5', custom_objects={'KerasLayer': hub.KerasLayer})
+model_load  = tf.keras.models.load_model(r'chatbot\chatbot_models\models\NLP_model.h5')
 
 loadedModel = joblib.load(r'chatbot\chatbot_models\models\BC_risk_model.pkl')
 trained_nlp = spacy.load(r"chatbot\chatbot_models\models\output\model-best")
