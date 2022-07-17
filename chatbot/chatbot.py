@@ -96,7 +96,7 @@ def get_user_name(text):
 
 def get_tokanized_input(user_input):
 
-    with open(r"chatbot\chatbot_data\tokenizer\tokenizer.pickle", 'rb') as handle:
+    with open(os.path.join("chatbot","chatbot_data","tokenizer","tokenizer.pickle"), 'rb') as handle:
         tokenizer = pickle.load(handle)
     
     sequences = tokenizer.texts_to_sequences([user_input])
