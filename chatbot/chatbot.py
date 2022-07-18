@@ -112,6 +112,7 @@ def get_reply_from_BC_npl_model(user_input):
     else:
         response = "Sorry!! I could not understand, could you please rephrase it?"
         
+        print(response)
         chatbot = Chatbot()
         chatbot.unidentifiedText = user_input
         chatbot.save()
