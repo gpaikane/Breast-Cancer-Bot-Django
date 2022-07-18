@@ -1,6 +1,4 @@
 from unittest.util import _MAX_LENGTH
-import numpy as np
-import pandas as pd
 from sympy import sequence
 import tensorflow as tf
 import joblib

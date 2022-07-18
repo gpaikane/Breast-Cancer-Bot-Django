@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'BreastCancerHelper.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd6v889l3fd0s16',
+        'HOST':'ec2-52-205-61-230.compute-1.amazonaws.com',
+        'PORT':'5432',
+        'USER': 'mboboteqnkjdsx',
+        'PASSWORD': '315682000b5c8117eaf3d4157cf667672f5c41ad15f42280e981774e6c0fbf51'
     }
 }
 
