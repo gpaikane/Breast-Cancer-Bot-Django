@@ -13,8 +13,8 @@ def chatbot(request):
     request.session["inputs"] = []
     request.session['asked_for_name'] = 0
 
-   # for key, value in request.session.items():
-    #    print('{} => {}'.format(key, value))
+    for key, value in request.session.items():
+        print('{} => {}'.format(key, value))
     return render(request, 'chatbot/main.html', {'qa':''})
 
 

@@ -11,6 +11,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pickle
 import os
+import json
 
 
 
@@ -19,7 +20,8 @@ MAX_LENGTH= 308
 
 # Load output data
 
-output_df = pd.read_json(os.path.join("chatbot","chatbot_data","save_replys_dataframe","output_df.json"))
+#output_df = pd.read_json(os.path.join("chatbot","chatbot_data","save_replys_dataframe","output_df.json"))
+output_parsed = json.loads(open(os.path.join("chatbot","chatbot_data","save_replys_dataframe","output_df.json")).read())
 
 
 def checkBreastCancerRisk(user_step, user_input, request):
@@ -107,17 +109,16 @@ def get_reply_from_BC_npl_model(user_input):
     class_output = predicted_result[0].argmax()
     print(predicted_result[0][class_output])
 
-    """
+    response_index = list(output_parsed['class'].values()).index(class_output)
+
     if (predicted_result[0][class_output] > THRESH_HOLD):
-        response = random.sample(output_df[output_df['class'] ==class_output]['responses'].to_list()[0],1)[0]
+        response = random.sample(list(output_parsed['responses'].values())[response_index],1)[0]
     else:
         response = "Sorry!! I could not understand, could you please rephrase it?"
         chatbot = Chatbot()
         chatbot.unidentifiedText = user_input
         chatbot.save()
-    """
-    response = "Sorry!! I could not understand, could you please rephrase it?"
-
+    
     return class_output, response 
 
 
@@ -153,9 +154,11 @@ def respond_to_user(user_input, request):
     if (request.session.get("user_step") == 0 and response != ""):
         response = response.replace("{username}", request.session.get('user_name'))
         print(f"2nd {response}")
+        
+        response_index = list(output_parsed['class'].values()).index(class_output)
 
         
-        if(output_df[output_df['class'] == class_output ]['tag'].to_list()[0] == "CancerRisk"):
+        if(list(output_parsed['tag'].values())[response_index]== "CancerRisk"):
             request.session["user_step"] +=1
             response, request.session["user_step"] = checkBreastCancerRisk(request.session.get("user_step"), user_input,request)
         if (additional_data_to_response == ""):
@@ -164,6 +167,6 @@ def respond_to_user(user_input, request):
         else:
             return response +"\n" + additional_data_to_response
     
-    if(request.session.get("user_step")> 0 or output_df[output_df['class'] == class_output ]['tag'].to_list()[0] == "CancerRisk"):
+    if(request.session.get("user_step")> 0 or list(output_parsed['tag'].values())[response_index]== "CancerRisk"):
         response, request.session["user_step"] = checkBreastCancerRisk(request.session.get("user_step"), user_input,request)
         return response
