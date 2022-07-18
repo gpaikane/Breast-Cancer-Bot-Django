@@ -59,10 +59,10 @@ function addChatEntry(input, product,botText) {
 
 
 
-  setTimeout(() => {
+  //setTimeout(() => {
     botText.innerHTML = '<b>HelperBot: </b>' 
     botText.innerHTML += `${product}`;
-  }, 700);
+ // }, 700);
 }
 
 
