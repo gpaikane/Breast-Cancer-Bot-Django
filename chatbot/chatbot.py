@@ -139,6 +139,7 @@ def respond_to_user(user_input, request):
 
 
     class_output, response = get_reply_from_BC_npl_model(user_input)
+    print(f"1st {response}")
     if request.session.get("user_name") == "":
         name = get_user_name(user_input[:30])
         if (name!=""):
@@ -149,12 +150,14 @@ def respond_to_user(user_input, request):
 
     if (request.session.get("user_step") == 0 and response != ""):
         response = response.replace("{username}", request.session.get('user_name'))
+        print(f"2nd {response}")
+
         
         if(output_df[output_df['class'] == class_output ]['tag'].to_list()[0] == "CancerRisk"):
             request.session["user_step"] +=1
             response, request.session["user_step"] = checkBreastCancerRisk(request.session.get("user_step"), user_input,request)
         if (additional_data_to_response == ""):
-            print(response)
+            print(f"3rd {response}")
             return response
         else:
             return response +"\n" + additional_data_to_response
