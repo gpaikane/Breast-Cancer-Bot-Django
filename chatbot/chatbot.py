@@ -17,19 +17,8 @@ import os
 THRESH_HOLD=0.65
 MAX_LENGTH= 308
 
+# Load output data
 
-user_name = ""
-user_step = 0
-next_step = 0
-inputs = []
-
-
-# Load models
-# import NLP model created to classify user's inputs to one of the classes mentioned in `output_df`. More info on this is providied in `Train Breast Cancer NLP Model for Chatbot`
-model_load  = tf.keras.models.load_model(os.path.join('chatbot','chatbot_models','models','NLP_model.h5'))
-
-loadedModel = joblib.load(os.path.join('chatbot','chatbot_models','models','BC_risk_model.pkl'))
-trained_nlp = spacy.load(os.path.join("chatbot","chatbot_models","models","output","model-best"))
 output_df = pd.read_json(os.path.join("chatbot","chatbot_data","save_replys_dataframe","output_df.json"))
 
 
@@ -76,6 +65,8 @@ def checkBreastCancerRisk(user_step, user_input, request):
     except:
             return("Please add numeric input", user_step )
     if(user_step == 15):
+
+        loadedModel = joblib.load(os.path.join('chatbot','chatbot_models','models','BC_risk_model.pkl'))
         print("test2")
         print(loadedModel.predict_proba([request.session["inputs"]]))
         probablity = loadedModel.predict_proba([request.session["inputs"]])[0][1]
@@ -87,6 +78,8 @@ def checkBreastCancerRisk(user_step, user_input, request):
 
 
 def get_user_name(text):
+    trained_nlp = spacy.load(os.path.join("chatbot","chatbot_models","models","output","model-best"))
+
     doc = trained_nlp(text)
             
     for ent in doc.ents:
@@ -104,6 +97,8 @@ def get_tokanized_input(user_input):
     return padded_seq
 
 def get_reply_from_BC_npl_model(user_input):
+    model_load  = tf.keras.models.load_model(os.path.join('chatbot','chatbot_models','models','NLP_model.h5'))
+
 
     padded_sequence = get_tokanized_input(user_input)
     print(padded_sequence)
