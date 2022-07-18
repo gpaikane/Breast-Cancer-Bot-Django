@@ -44,7 +44,6 @@
 	  flex-direction: column;
 	  justify-content: center;
 	  align-items: center;
-	  margin-top: -20%;
 
 ;
 	  
@@ -62,6 +61,7 @@
 	  width: auto;
 	  border-style:groove;
 	  border-color: black;
+	  margin-top: 1%;
 
   }
   

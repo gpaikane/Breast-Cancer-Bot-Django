@@ -1,7 +1,7 @@
 const inputField = document.getElementById("input");
 inputField.addEventListener("keydown", (e) => {
   console.log(e)
-  if (e.code === "Enter" || e.code==13) {
+  if (e.code === "Enter" || e.key === 'Enter') {
     let input = inputField.value;
     inputField.value = "";
 
