@@ -59,7 +59,7 @@
 	  padding: 15px; 
 	  margin-left: auto;
 	  border-radius: 10px; 
-	  width: 40%;
+	  width: auto;
 	  border-style:groove;
 	  border-color: black;
 
@@ -73,7 +73,7 @@
 	  width: 100%;
 	  background-color: white;
 	  padding: 15px;
-	  margin: 15px;
+	  margin: auto;
 	  border-radius: 10px;
 	  border-style:groove;
   }
@@ -83,13 +83,13 @@
 	flex-direction: column;
 	overflow: scroll;
 	height: 30%;
-	width: 20%;
+	width: auto;
 	background-color: white;
 	padding: 15px;
 	margin: 15px;
-	margin-bottom: 50px;
+	margin-bottom: auto;
 	border-radius: 10px;
-	margin-top: -20%;
+	margin-top: auto;
 }
   
   #bot {

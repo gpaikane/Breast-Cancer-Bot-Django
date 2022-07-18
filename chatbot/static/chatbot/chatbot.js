@@ -1,6 +1,7 @@
 const inputField = document.getElementById("input");
 inputField.addEventListener("keydown", (e) => {
-  if (e.code === "Enter") {
+  console.log(e)
+  if (e.code === "Enter" || e.code==13) {
     let input = inputField.value;
     inputField.value = "";
 
@@ -22,7 +23,7 @@ inputField.addEventListener("keydown", (e) => {
   
     messagesContainer.scrollTop =
       messagesContainer.scrollHeight - messagesContainer.clientHeight;
-      
+
     setTimeout(() => {
       output(input, botText);
     }, 700);
