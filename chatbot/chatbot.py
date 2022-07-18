@@ -154,6 +154,7 @@ def respond_to_user(user_input, request):
             request.session["user_step"] +=1
             response, request.session["user_step"] = checkBreastCancerRisk(request.session.get("user_step"), user_input,request)
         if (additional_data_to_response == ""):
+            print(response)
             return response
         else:
             return response +"\n" + additional_data_to_response
