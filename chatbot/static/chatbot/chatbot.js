@@ -22,8 +22,10 @@ inputField.addEventListener("keydown", (e) => {
   
     messagesContainer.scrollTop =
       messagesContainer.scrollHeight - messagesContainer.clientHeight;
-
-    output(input, botText);
+      
+    setTimeout(() => {
+      output(input, botText);
+    }, 700);
   }
 });
 
